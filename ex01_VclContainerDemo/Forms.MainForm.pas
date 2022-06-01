@@ -60,12 +60,12 @@ end;
 
 procedure TFormMain.btnArangePositionClick(Sender: TObject);
 begin
-  // TODO
+  fTrainingFeature.ArrangePosiotion();
 end;
 
 procedure TFormMain.btnApplyStyleClick(Sender: TObject);
 begin
-  // TODO
+  fTrainingFeature.ApplyStyle();
 end;
 
 end.
