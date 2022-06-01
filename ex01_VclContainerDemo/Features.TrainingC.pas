@@ -28,11 +28,11 @@ type
 
   TTrainingFeature = class(TInterfacedObject, ITrainingFeature)
   private
-    fFormFactory: TFormFactory;
+    fFormFactory: IFormFactory;
     fFormStore: IFormStore;
   public
     constructor Create(
-      const aFormFactory: TFormFactory;
+      const aFormFactory: IFormFactory;
       const aFormStore: IFormStore);
     procedure GenerateForms(const aCount: integer);
     procedure ApplyStyle();
@@ -80,7 +80,7 @@ end;
 { TTrainingFeature }
 
 constructor TTrainingFeature.Create(
-  const aFormFactory: TFormFactory;
+  const aFormFactory: IFormFactory;
   const aFormStore: IFormStore);
 begin
   fFormFactory := aFormFactory;

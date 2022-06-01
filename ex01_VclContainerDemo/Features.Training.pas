@@ -19,6 +19,7 @@ type
   end;
 
   ITrainingFeature = interface(IInvokable)
+    ['{75A0A967-C145-47AB-B9A3-3F389D1EB9AA}']
     procedure GenerateForms(const aCount: Integer);
     procedure ApplyStyle();
     procedure ArrangePosiotion();

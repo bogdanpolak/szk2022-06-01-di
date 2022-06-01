@@ -55,7 +55,7 @@ end;
 
 procedure TFormMain.btnCreateFormsClick(Sender: TObject);
 begin
-  // TODO: use fTrainingFeature to generate forms
+  fTrainingFeature.GenerateForms(1 + random(3));
 end;
 
 procedure TFormMain.btnArangePositionClick(Sender: TObject);
