@@ -24,8 +24,6 @@ object FormMain: TFormMain
     Caption = 'Feature: Forms'
     Padding.Top = 10
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 8
     object btnCreateForms: TButton
       AlignWithMargins = True
       Left = 5
@@ -36,35 +34,28 @@ object FormMain: TFormMain
       Caption = 'btnCreateForms'
       TabOrder = 0
       OnClick = btnCreateFormsClick
-      ExplicitLeft = 8
-      ExplicitTop = 8
-      ExplicitWidth = 137
     end
-    object Button2: TButton
+    object btnArangePosition: TButton
       AlignWithMargins = True
       Left = 5
       Top = 106
       Width = 324
       Height = 25
       Align = alTop
-      Caption = 'Button2'
+      Caption = 'btnArangePosition'
       TabOrder = 2
-      ExplicitLeft = 110
-      ExplicitTop = 80
-      ExplicitWidth = 75
+      OnClick = btnArangePositionClick
     end
-    object Button3: TButton
+    object btnApplyStyle: TButton
       AlignWithMargins = True
       Left = 5
       Top = 137
       Width = 324
       Height = 25
       Align = alTop
-      Caption = 'Button3'
+      Caption = 'btnApplyStyle'
       TabOrder = 3
-      ExplicitLeft = 70
-      ExplicitTop = 111
-      ExplicitWidth = 75
+      OnClick = btnApplyStyleClick
     end
     object GridPanel1: TGridPanel
       AlignWithMargins = True
@@ -73,7 +64,7 @@ object FormMain: TFormMain
       Width = 324
       Height = 41
       Align = alTop
-      Caption = 'GridPanel1'
+      Caption = ' '
       ColumnCollection = <
         item
           Value = 50.000000000000000000
@@ -84,12 +75,12 @@ object FormMain: TFormMain
       ControlCollection = <
         item
           Column = 0
-          Control = Edit1
+          Control = edtRangeFrom
           Row = 0
         end
         item
           Column = 1
-          Control = Edit2
+          Control = edtRangeTo
           Row = 0
         end>
       RowCollection = <
@@ -97,31 +88,27 @@ object FormMain: TFormMain
           Value = 100.000000000000000000
         end>
       TabOrder = 1
-      object Edit1: TEdit
+      object edtRangeFrom: TEdit
         AlignWithMargins = True
         Left = 4
         Top = 4
         Width = 155
         Height = 21
         Align = alTop
+        Alignment = taCenter
         TabOrder = 0
-        Text = 'Edit1'
-        ExplicitLeft = 17
-        ExplicitTop = 9
-        ExplicitWidth = 121
+        Text = '1'
       end
-      object Edit2: TEdit
+      object edtRangeTo: TEdit
         AlignWithMargins = True
         Left = 165
         Top = 4
         Width = 155
         Height = 21
         Align = alTop
+        Alignment = taCenter
         TabOrder = 1
-        Text = 'Edit2'
-        ExplicitLeft = 104
-        ExplicitTop = 8
-        ExplicitWidth = 121
+        Text = '4'
       end
     end
   end

@@ -17,12 +17,14 @@ uses
 type
   TFormMain = class(TForm)
     btnCreateForms: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    btnArangePosition: TButton;
+    btnApplyStyle: TButton;
     GroupBox1: TGroupBox;
     GridPanel1: TGridPanel;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edtRangeFrom: TEdit;
+    edtRangeTo: TEdit;
+    procedure btnApplyStyleClick(Sender: TObject);
+    procedure btnArangePositionClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnCreateFormsClick(Sender: TObject);
   private
@@ -53,13 +55,17 @@ end;
 
 procedure TFormMain.btnCreateFormsClick(Sender: TObject);
 begin
-  fTrainingFeature..MakeTrainingForms(1 + random(3));
-  Forms.ForEach(
-    procedure(const Form: TTrainingForm)
-    begin
-      Form.Show;
-    end);
-  fForms.AddRange(Forms);
+  // TODO: use fTrainingFeature to generate forms
+end;
+
+procedure TFormMain.btnArangePositionClick(Sender: TObject);
+begin
+  // TODO
+end;
+
+procedure TFormMain.btnApplyStyleClick(Sender: TObject);
+begin
+  // TODO
 end;
 
 end.

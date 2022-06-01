@@ -34,7 +34,7 @@ type
     constructor Create(
       const aFormFactory: TFormFactory;
       const aFormStore: IFormStore);
-    procedure Generate(const aCount: integer);
+    procedure GenerateForms(const aCount: integer);
     procedure ApplyStyle();
     procedure ArrangePosiotion();
   end;
@@ -87,7 +87,7 @@ begin
   fFormStore := aFormStore;
 end;
 
-procedure TTrainingFeature.Generate(const aCount: integer);
+procedure TTrainingFeature.GenerateForms(const aCount: integer);
 var
   newForms: IList<TForm>;
 begin
@@ -111,3 +111,4 @@ begin
 end;
 
 end.
+

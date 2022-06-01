@@ -19,7 +19,7 @@ type
   end;
 
   ITrainingFeature = interface(IInvokable)
-    procedure Generate(const aCount: Integer);
+    procedure GenerateForms(const aCount: Integer);
     procedure ApplyStyle();
     procedure ArrangePosiotion();
   end;
@@ -27,3 +27,4 @@ type
 implementation
 
 end.
+
