@@ -7,19 +7,25 @@ uses
   Spring.Collections;
 
 type
-  TRectangle = record
+  TRectangle = class
     Left: Integer;
     Top: Integer;
-    Rigth: Integer;
+    Right: Integer;
     Bottom: Integer;
     IsArranged: Boolean;
+    constructor Create(
+      aLeft: Integer;
+      aTop: Integer;
+      aRight: Integer;
+      aBottom: Integer;
+      aIsArranged: Boolean = false);
   end;
 
   TRectangleArranger = class
   public
-    //    function Arrange(
-    //      const aBackground: TRectangle;
-    //      const aRectangles: IEnumerable<TRectangle>): IEnumerable<TRectangle>;
+    // function Arrange(
+    // const aBackground: TRectangle;
+    // const aRectangles: IEnumerable<TRectangle>): IEnumerable<TRectangle>;
     procedure Arrange(
       const aBackground: TRectangle;
       var aRectangles: IReadOnlyList<TRectangle>);
@@ -34,22 +40,39 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
-    [Test]
-    procedure When_Given_Then;
+  published
+    procedure WhenBackgroundLeftTopIsZero_ThenFirstWasArrenged;
+    procedure WhenBackgroundLeftTopIsNonZero_ThenFirstWasArrenged;
   end;
 
 implementation
 
+{ TRectangle }
+
+constructor TRectangle.Create(
+  aLeft, aTop, aRight, aBottom: Integer;
+  aIsArranged: Boolean = false);
+begin
+  Left := aLeft;
+  Top := aTop;
+  Right := aRight;
+  Bottom := aBottom;
+  IsArranged := aIsArranged;
+end;
+
 { TRectangleArranger }
 
-procedure TRectangleArranger.Arrange(const aBackground: TRectangle;
+procedure TRectangleArranger.Arrange(
+  const aBackground: TRectangle;
   var aRectangles: IReadOnlyList<TRectangle>);
 begin
-
+  aRectangles.First.Left := 10;
+  aRectangles.First.Top := 10;
+  aRectangles.First.Right := 20;
+  aRectangles.First.Bottom := 20;
 end;
 
 // -----------------------------------------
-
 
 procedure TRectangleArrangerTests.Setup;
 begin
@@ -61,14 +84,38 @@ begin
   sut.Free;
 end;
 
-procedure TRectangleArrangerTests.When_Given_Then;
+procedure TRectangleArrangerTests.WhenBackgroundLeftTopIsZero_ThenFirstWasArrenged;
 begin
   // Arrange
-  backgrou
+  var
+  rectagles := TCollections.CreateList<TRectangle>
+    ([TRectangle.Create(0, 0, 50, 50)]).AsReadOnlyList();
 
   // Act
-  sut.Arrange()
+  sut.Arrange(TRectangle.Create(0, 0, 900, 900), rectagles);
+
   // Assert
+  Assert.AreEqual(10, rectagles.First.Left);
+  Assert.AreEqual(10, rectagles.First.Top);
+  Assert.AreEqual(20, rectagles.First.Right);
+  Assert.AreEqual(20, rectagles.First.Bottom);
+end;
+
+procedure TRectangleArrangerTests.WhenBackgroundLeftTopIsNonZero_ThenFirstWasArrenged;
+begin
+  // Arrange
+  var
+  rectagles := TCollections.CreateList<TRectangle>
+    ([TRectangle.Create(0, 0, 50, 50)]).AsReadOnlyList();
+
+  // Act
+  sut.Arrange(TRectangle.Create(100, 200, 900, 900), rectagles);
+
+  // Assert
+  Assert.AreEqual(110, rectagles.First.Left);
+  Assert.AreEqual(210, rectagles.First.Top);
+  Assert.AreEqual(120, rectagles.First.Right);
+  Assert.AreEqual(220, rectagles.First.Bottom);
 end;
 
 initialization
