@@ -13,7 +13,7 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   {$ENDIF }
   DUnitX.TestFramework,
-  RecctangleArrangerTests in 'RecctangleArrangerTests.pas';
+  RectangleArrangerTests in 'RectangleArrangerTests.pas';
 
 {$IFNDEF TESTINSIGHT}
 var
