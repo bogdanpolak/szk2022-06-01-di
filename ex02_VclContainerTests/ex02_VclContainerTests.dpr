@@ -10,10 +10,13 @@ uses
   TestInsight.DUnitX,
   {$ELSE}
   DUnitX.Loggers.Console,
-  DUnitX.Loggers.Xml.NUnit,
   {$ENDIF }
   DUnitX.TestFramework,
-  RectangleArrangerTests in 'RectangleArrangerTests.pas';
+  RectangleArrangerTests in 'RectangleArrangerTests.pas',
+  Features.Training in '..\ex01_VclContainerDemo\Features.Training.pas',
+  Features.TrainingC in '..\ex01_VclContainerDemo\Features.TrainingC.pas',
+  Forms.TrainingForm in '..\ex01_VclContainerDemo\Forms.TrainingForm.pas' {TrainingForm},
+  TrainingFeatureTests in 'TrainingFeatureTests.pas';
 
 {$IFNDEF TESTINSIGHT}
 var
