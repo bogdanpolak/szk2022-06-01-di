@@ -7,6 +7,11 @@ uses
   Vcl.Forms;
 
 type
+  IRectangleArranger = interface(IInvokable)
+    ['{D3A38B69-58BA-463C-A8CA-4587CF97145F}']
+    procedure Arrange(const aFormList: IReadOnlyList<TForm>);
+  end;
+
   IFormFactory = interface(IInvokable)
     ['{42EBD089-861B-4F10-9289-00062A36D289}']
     function MakeTrainingForms(aFormCount: integer): IList<TForm>;
