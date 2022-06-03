@@ -47,6 +47,7 @@ begin
   GlobalContainer.RegisterType<IFormFactory, TFormFactory>();
   GlobalContainer.RegisterType<IFormStore, TMemoryFormStore>();
   GlobalContainer.RegisterType<ITrainingFeature, TTrainingFeature>();
+  GlobalContainer.RegisterType<IRectangleArranger,TRectangleArranger>();
 
   // Resolve Composition Root
   GlobalContainer.Build;

@@ -6,7 +6,9 @@ uses
   System.Types,
   System.SysUtils,
   System.UITypes,
+  Spring,
   Spring.Collections,
+  Spring.Container.Common,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.StdCtrls,
@@ -14,6 +16,15 @@ uses
   Features.Training;
 
 type
+  TRectangleArranger = class(TInterfacedObject, IRectangleArranger)
+  public
+    procedure Arrange(const aFormList: IReadOnlyList<TForm>);
+  private
+    function NoFormAtPos(
+      const formList: IReadOnlyList<TForm>;
+      const p: TPoint): boolean;
+  end;
+
   TFormFactory = class(TInterfacedObject, IFormFactory)
   private
   public
@@ -34,10 +45,13 @@ type
   private
     fFormFactory: IFormFactory;
     fFormStore: IFormStore;
+    fRectangleArranger: IRectangleArranger;
   public
+    [Inject]
     constructor Create(
       const aFormFactory: IFormFactory;
-      const aFormStore: IFormStore);
+      const aFormStore: IFormStore;
+      const aRectangleArranger: IRectangleArranger);
     procedure GenerateForms(const aCount: integer);
     procedure ApplyStyle();
     procedure ArrangePosiotion();
@@ -85,17 +99,22 @@ end;
 
 constructor TTrainingFeature.Create(
   const aFormFactory: IFormFactory;
-  const aFormStore: IFormStore);
+  const aFormStore: IFormStore;
+  const aRectangleArranger: IRectangleArranger);
 begin
+  Guard.CheckNotNull(aFormFactory, 'aFormFactory');
+  Guard.CheckNotNull(aFormStore, 'aFormStore');
+  Guard.CheckNotNull(aRectangleArranger, 'aRectangleArranger');
   fFormFactory := aFormFactory;
   fFormStore := aFormStore;
+  fRectangleArranger := aRectangleArranger;
 end;
 
 procedure TTrainingFeature.GenerateForms(const aCount: integer);
 var
   newForms: IList<TForm>;
 begin
-  newForms := fFormFactory.MakeTrainingForms(1 + random(3));
+  newForms := fFormFactory.MakeTrainingForms(aCount);
   newForms.ForEach(
     procedure(const f: TForm)
     begin
@@ -138,7 +157,14 @@ begin
   end;
 end;
 
-function NoFormAtPos(
+procedure TTrainingFeature.ArrangePosiotion;
+begin
+  fRectangleArranger.Arrange(fFormStore.GetForms());
+end;
+
+{ TRectangleArranger }
+
+function TRectangleArranger.NoFormAtPos(
   const formList: IReadOnlyList<TForm>;
   const p: TPoint): boolean;
 var
@@ -154,36 +180,34 @@ begin
   Result := true;
 end;
 
-procedure TTrainingFeature.ArrangePosiotion;
+procedure TRectangleArranger.Arrange(const aFormList: IReadOnlyList<TForm>);
 const
   FormHeight = 150;
   FormWidth = 300;
 var
-  formList: IReadOnlyList<TForm>;
   start: TPoint;
   availableSlots: IList<TPoint>;
-  x: integer;
-  y: integer;
+  X: integer;
+  Y: integer;
   form: TForm;
 begin
-  formList := fFormStore.GetForms();
   start := TPoint.Create(10, 10);
   availableSlots := TCollections.CreateList<TPoint>();
-  x := start.X;
-  y := start.Y;
+  X := start.X;
+  Y := start.Y;
   while (Y + FormHeight < Screen.DesktopHeight) do
   begin
-    if NoFormAtPos(formList, TPoint.Create(x + 10, y + 10)) then
-      availableSlots.Add(TPoint.Create(x, y));
-    x := x + FormWidth;
-    if (x+FormWidth >= Screen.DesktopWidth) then
+    if NoFormAtPos(aFormList, TPoint.Create(X + 10, Y + 10)) then
+      availableSlots.Add(TPoint.Create(X, Y));
+    X := X + FormWidth;
+    if (X + FormWidth >= Screen.DesktopWidth) then
     begin
-      x := start.X;
-      y := y + FormHeight;
+      X := start.X;
+      Y := Y + FormHeight;
     end;
   end;
-  for form in formList do
-    if (form.Tag = 0) and (availableSlots.Count>0) then
+  for form in aFormList do
+    if (form.Tag = 0) and (availableSlots.Count > 0) then
     begin
       form.Left := availableSlots.First.X;
       form.Top := availableSlots.First.Y;
