@@ -93,6 +93,22 @@
             <Form>TrainingForm</Form>
         </DCCReference>
         <DCCReference Include="TrainingFeatureTests.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.AutoMock.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Behavior.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Expectation.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Helpers.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Interfaces.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.MethodData.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.ObjectProxy.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.ParamMatcher.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Proxy.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Proxy.TypeInfo.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.ReturnTypePatch.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Utils.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.Validation.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.WeakReference.pas"/>
+        <DCCReference Include="DelphiMocks\Delphi.Mocks.When.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

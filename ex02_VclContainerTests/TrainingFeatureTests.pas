@@ -5,6 +5,7 @@ interface
 uses
   System.SysUtils,
   System.StrUtils,
+  Delphi.Mocks,
   DUnitX.TestFramework,
   Spring.Collections,
   Features.TrainingC;
@@ -31,7 +32,8 @@ implementation
 
 procedure TTrainingFeatureTests.Setup;
 begin
-  Assert.Fail;
+
+  // sut := TTrainingFeature.Create();
 end;
 
 procedure TTrainingFeatureTests.TearDown;
@@ -41,7 +43,7 @@ end;
 
 procedure TTrainingFeatureTests.Test1;
 begin
-
+  sut.GenerateForms(3);
 end;
 
 initialization
