@@ -58,13 +58,14 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
+  private
+    procedure GivenManyRectangles_ThenShouldWrap;
+    procedure GivenManyRectanglesWithDifferentSizes;
+    procedure GivenRectangles_ThenArragedOnesShouldNotBeMoved;
   published
     procedure GivenBackgroundLeftTopAtZero_AndOneRectangle;
     procedure GivenBackgroundLeftTopNonZero_AndOneRectangle;
     procedure GivenTwoRectangles;
-    procedure GivenManyRectangles_ThenShouldWrap;
-    procedure GivenManyRectanglesWithDifferentSizes;
-    procedure GivenRectangles_ThenArragedOnesShouldNotBeMoved;
   end;
 
 implementation
